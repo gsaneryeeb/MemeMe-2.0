@@ -87,9 +87,9 @@ class MemeEditorViewController: UIViewController,UIImagePickerControllerDelegate
     // MARK: - Keyboard
     //Move the view when the keyboard covers the text field
     func subscribeToKeyboardNotifications(){
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MemeEditorViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MemeEditorViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
     }
     
     func unsubscribeToKeyboardNotifications(){
@@ -223,6 +223,15 @@ class MemeEditorViewController: UIViewController,UIImagePickerControllerDelegate
         // Add it to the memes array on the Application Delegate
         (UIApplication.sharedApplication().delegate as! AppDelegate).memes.append(meme)
         
+        var tempMeme: [Meme]!
+        
+        tempMeme = (UIApplication.sharedApplication().delegate as! AppDelegate).memes
+            
+        // Dissmiss window / viewcontroller
+        self.dismissViewControllerAnimated(true, completion: nil)
+        //self.navigationController?.popViewControllerAnimated(true);
+        
+
     }
 
 }
