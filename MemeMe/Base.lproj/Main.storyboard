@@ -144,7 +144,11 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Sent Memes" id="uW5-Ju-8p8">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="CNF-Iw-8mC"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="CNF-Iw-8mC">
+                            <connections>
+                                <action selector="addNewMeme:" destination="wmk-Om-Cak" id="YNR-bH-th4"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="flowLayout" destination="kzW-UA-Wl8" id="Haw-c3-KRu"/>

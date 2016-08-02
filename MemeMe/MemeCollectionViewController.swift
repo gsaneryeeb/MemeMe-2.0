@@ -14,6 +14,15 @@ class MemeCollectionViewController: UICollectionViewController {
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     
     
+    @IBAction func addNewMeme(sender: AnyObject) {
+        
+        // Open a new UIView use View Controller do not passed data.
+        if let resultController = storyboard!.instantiateViewControllerWithIdentifier("MemeEditorViewController") as? MemeEditorViewController {
+            presentViewController(resultController, animated: true, completion: nil)
+        }
+
+        
+    }
     var allMeme: [Meme]!
     
     override func viewWillAppear(animated: Bool) {
