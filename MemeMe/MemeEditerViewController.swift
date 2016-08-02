@@ -29,6 +29,11 @@ class MemeEditorViewController: UIViewController,UIImagePickerControllerDelegate
     
     // MARK: - Action
     
+    @IBAction func cancelWindow(sender: AnyObject) {
+        
+        dismissViewControllerAnimated(true, completion: nil)
+        
+    }
     @IBAction func shareImage(sender: AnyObject) {
         
         //generate a memed image
