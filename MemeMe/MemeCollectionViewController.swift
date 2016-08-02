@@ -10,13 +10,51 @@ import UIKit
 
 class MemeCollectionViewController: UICollectionViewController {
     
-    var memes: [Meme]!
+    
+    @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
+    
+    
+    var allMeme: [Meme]!
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.hidden = false
+        let applicationDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
+        
+        allMeme = applicationDelegate.memes
+        
+        collectionView?.reloadData()
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let applicationDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
-        memes = applicationDelegate.memes
+        let space:CGFloat = 3.0
+        let dimension = (self.view.frame.size.width - (2 * space)) / 3.0
+        
+        flowLayout.minimumInteritemSpacing = space
+        flowLayout.minimumLineSpacing = space
+        flowLayout.itemSize = CGSizeMake(dimension, dimension)
+        
+        self.collectionView?.backgroundColor = UIColor.whiteColor()
+        
     }
+    
+    
+    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.allMeme.count
+    }
+    
+    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("MemeCollectionViewCell", forIndexPath: indexPath) as! MemeCollectionViewCell
+        
+        let meme = self.allMeme[indexPath.row]
+        
+        cell.memedImageView?.image = meme.memedImage
+        return cell
+    }
+    
     
 }
